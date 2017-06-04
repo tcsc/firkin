@@ -19,6 +19,7 @@ pub mod image_space {
         fmt = true;
     }
 
+    /// Defines conversions to/from raw values
     macro_rules! define_conversion {
         ($Unit:ty, $ValueType:ty, $ResultType:tt) => {
             impl ops::Mul<$Unit> for $ValueType {

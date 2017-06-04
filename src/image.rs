@@ -59,6 +59,7 @@ pub trait MutableImage<PixelType: Pixel>
 // Owned image
 // ----------------------------------------------------------------------------
 
+/// Defines a potentially-mutable image that owns its own pixels.
 pub struct OwnedImage<PixelType: Pixel> {
     width: DistPx,
     height: DistPx,
