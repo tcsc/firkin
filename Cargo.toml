@@ -1,0 +1,14 @@
+[package]
+name = "firkin"
+version = "0.1.0"
+authors = ["Trent Clarke <trent.clarke@gmail.com>"]
+
+[dependencies]
+byteorder = "1.0.0"
+clap = "2.24.2"
+dimensioned = "0.6.0"
+env_logger = "0.4.2"
+log = "0.3.7"
+memmap = "0.5.2"
+num = "0.1.37"
+tempfile = "2.1.5"
