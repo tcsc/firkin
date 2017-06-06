@@ -225,7 +225,7 @@ impl<'a, PixelType: Pixel> Image<PixelType>
 #[cfg(test)]
 mod test_memory_mapped_image {
     use super::*;
-
+    use std::path::Path;
     use tempfile::NamedTempFile;
     use units::{DistPx, PX};
 
@@ -285,5 +285,24 @@ mod test_memory_mapped_image {
                 assert_eq!(((y * 1000) + x) as f32, px);
             }
         }
+    }
+
+    #[test]
+    fn mapping_a_non_existant_file_is_an_error() {
+      let maybe_img = MemoryMappedImage::<f32>::map_file(
+          Path::new("noensuch.raw"), 
+          42isize * PX, 
+          128isize * PX);
+      assert!(maybe_img.is_err());
+    }
+
+    #[test]
+    fn mapping_an_image_with_bad_dimensions_is_an_error() {
+        let width = 256isize * PX;
+        let height = 128isize * PX;
+
+        let tmp = make_test_image::<f32>(width, height);
+        let maybe_img = MemoryMappedImage::<f32>::map_file(tmp.path(), width/2, height/2);
+        assert!(maybe_img.is_err());
     }
 }
